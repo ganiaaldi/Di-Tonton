@@ -60,7 +60,7 @@ void main() {
       type: "Scripted",
       voteAverage: 1.0,
       voteCount: 615);
-  ;
+
 
   test('TvSeries Detail should be a subclass of Tv series Detail entity',
       () async {

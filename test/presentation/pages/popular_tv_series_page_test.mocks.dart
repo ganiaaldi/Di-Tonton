@@ -37,7 +37,7 @@ class MockPopularTvSeriesNotifier extends _i1.Mock
           returnValue: _FakeGetPopularTvSeries()) as _i2.GetPopularTvSeries);
   @override
   _i4.RequestState get state => (super.noSuchMethod(Invocation.getter(#state),
-      returnValue: _i4.RequestState.Empty) as _i4.RequestState);
+      returnValue: _i4.RequestState.empty) as _i4.RequestState);
   @override
   List<_i5.TvSeries> get tvSeries =>
       (super.noSuchMethod(Invocation.getter(#tvSeries),

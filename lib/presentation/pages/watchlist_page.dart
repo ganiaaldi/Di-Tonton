@@ -35,13 +35,13 @@ class _WatchlistPageState extends State<WatchlistPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer2<WatchlistMovieNotifier, WatchlistTvSeriesNotifier>(
           builder: (context, dataMovie, dataTv, child) {
-            if (dataMovie.watchlistState == RequestState.Loading &&
-                dataTv.watchlistState == RequestState.Loading) {
+            if (dataMovie.watchlistState == RequestState.loading &&
+                dataTv.watchlistState == RequestState.loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (dataMovie.watchlistState == RequestState.Loaded &&
-                dataTv.watchlistState == RequestState.Loaded) {
+            } else if (dataMovie.watchlistState == RequestState.loaded &&
+                dataTv.watchlistState == RequestState.loaded) {
               return ListView(
                 children: <Widget>[
                   ...dataMovie.watchlistMovies.map((movie) {

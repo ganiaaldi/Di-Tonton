@@ -37,11 +37,11 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
     return Scaffold(
       body: Consumer<TvSeriesDetailNotifier>(
         builder: (context, provider, child) {
-          if (provider.tvSeriesState == RequestState.Loading) {
+          if (provider.tvSeriesState == RequestState.loading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.tvSeriesState == RequestState.Loaded) {
+          } else if (provider.tvSeriesState == RequestState.loaded) {
             final tv = provider.tvSeries;
             return SafeArea(
               child: DetailContent(
@@ -156,9 +156,6 @@ class DetailContent extends StatelessWidget {
                             Text(
                               _showGenres(tvSeries.genres),
                             ),
-                            // Text(
-                            //   _showDuration(movie.runtime),
-                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
@@ -189,15 +186,15 @@ class DetailContent extends StatelessWidget {
                             Consumer<TvSeriesDetailNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
-                                    RequestState.Loading) {
+                                    RequestState.loading) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.recommendationState ==
-                                    RequestState.Error) {
+                                    RequestState.error) {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
-                                    RequestState.Loaded) {
+                                    RequestState.loaded) {
                                   return Container(
                                     height: 150,
                                     child: ListView.builder(
