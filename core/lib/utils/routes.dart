@@ -11,4 +11,3 @@ const POPULAR_TVSERIES_ROUTE = '/popular-tvseries';
 const TOP_RATED_TVSERIES_ROUTE = '/top-rated-tv-series';
 const TVSERIES_DETAIL_ROUTE = '/detail-tv';
 const SEARCH_TVSERIES_ROUTE = '/search-tv-series';
-const SEASON_DETAIL_ROUTE = '/detail-season';

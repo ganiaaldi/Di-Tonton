@@ -11,7 +11,6 @@ import 'package:detail/presentation/bloc/detail_bloc.dart';
 import 'package:detail/presentation/bloc/detail_tv_bloc.dart';
 import 'package:detail/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:detail/presentation/bloc/recommendation/recommendation_tv_bloc.dart';
-import 'package:detail/presentation/bloc/season_tvseries/season_tv_bloc.dart';
 import 'package:detail/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:detail/presentation/bloc/watchlist_status/watchlist_status_tv_bloc.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +38,6 @@ import 'package:core/domain/usecases/remove_watchlist.dart';
 import 'package:core/domain/usecases/save_watchlist.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:core/domain/usecases/tvseries/get_now_playing_tvseries.dart';
-import 'package:core/domain/usecases/tvseries/get_season_detail.dart';
 import 'package:core/domain/usecases/tvseries/get_watchlist_status_tv.dart';
 import 'package:core/domain/usecases/tvseries/remove_watchlist_tv.dart';
 import 'package:core/domain/usecases/tvseries/save_watchlist_tv.dart';
@@ -59,11 +57,6 @@ import 'package:search/domain/usecases/search_tvseries.dart';
 final locator = GetIt.instance;
 
 void init() {
-  /**
-   * Movies
-   */
-
-  // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
@@ -75,28 +68,28 @@ void init() {
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
-  // repository
   locator.registerLazySingleton<MovieRepository>(
-    () => MovieRepositoryImpl(
-      remoteDataSource: locator(),
-      localDataSource: locator(),
-    ),
+        () =>
+        MovieRepositoryImpl(
+          remoteDataSource: locator(),
+          localDataSource: locator(),
+        ),
   );
 
-  // data sources
-  locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl(client: locator()));
-  locator.registerLazySingleton<MovieLocalDataSource>(
-      () => MovieLocalDataSourceImpl(databaseHelper: locator()));
 
-  // helper
+  locator.registerLazySingleton<MovieRemoteDataSource>(
+          () => MovieRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<MovieLocalDataSource>(
+          () => MovieLocalDataSourceImpl(databaseHelper: locator()));
+
+
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
-  // external
+
   locator.registerLazySingleton(() => http.Client());
   locator.registerSingletonAsync<IOClient>(() async {
     final sslCert =
-        await rootBundle.load('assets/certificates/certificate.pem');
+    await rootBundle.load('assets/certificate.pem');
     SecurityContext securityContext = SecurityContext(withTrustedRoots: false);
     securityContext.setTrustedCertificatesBytes(sslCert.buffer.asInt8List());
 
@@ -108,71 +101,74 @@ void init() {
     return client;
   });
 
-  //bloc
   locator.registerFactory(
-    () => SearchBloc(
-      locator(),
-    ),
+        () =>
+        SearchBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => PopularBloc(
-      locator(),
-    ),
+        () =>
+        PopularBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => TopRatedBloc(
-      locator(),
-    ),
+        () =>
+        TopRatedBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => DetailBloc(
-      locator(),
-    ),
+        () =>
+        DetailBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => RecommendationBloc(
-      locator(),
-    ),
+        () =>
+        RecommendationBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => WatchlistStatusBloc(
-      locator(),
-      locator(),
-      locator(),
-    ),
+        () =>
+        WatchlistStatusBloc(
+          locator(),
+          locator(),
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => WatchlistBloc(
-      locator(),
-      locator(),
-    ),
+        () =>
+        WatchlistBloc(
+          locator(),
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => NowPlayingMovieListBloc(
-      locator(),
-    ),
+        () =>
+        NowPlayingMovieListBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => PopularMovieListBloc(
-      locator(),
-    ),
+        () =>
+        PopularMovieListBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => TopRatedMovieListBloc(
-      locator(),
-    ),
+        () =>
+        TopRatedMovieListBloc(
+          locator(),
+        ),
   );
 
-  /**
-   * TV Series
-   */
-
-  // use case
   locator.registerLazySingleton(() => GetNowPlayingTvSeries(locator()));
   locator.registerLazySingleton(() => GetPopularTvSeries(locator()));
   locator.registerLazySingleton(() => GetTopRatedTvSeries(locator()));
   locator.registerLazySingleton(() => GetTvSeriesDetail(locator()));
-  locator.registerLazySingleton(() => GetSeasonDetail(locator()));
   locator.registerLazySingleton(() => GetTvSeriesRecommendations(locator()));
   locator.registerLazySingleton(() => SearchTvSeries(locator()));
   locator.registerLazySingleton(() => GetWatchListStatusTvSeries(locator()));
@@ -180,71 +176,73 @@ void init() {
   locator.registerLazySingleton(() => RemoveWatchlistTvSeries(locator()));
   locator.registerLazySingleton(() => GetWatchlistTvSeries(locator()));
 
-  // repository
   locator.registerLazySingleton<TvSeriesRepository>(
-    () => TvSeriesRepositoryImpl(
-      remoteDataSource: locator(),
-      localDataSource: locator(),
-    ),
+        () =>
+        TvSeriesRepositoryImpl(
+          remoteDataSource: locator(),
+          localDataSource: locator(),
+        ),
   );
 
-  // data sources
   locator.registerLazySingleton<TvSeriesRemoteDataSource>(
-      () => TvSeriesRemoteDataSourceImpl(client: locator()));
+          () => TvSeriesRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<TvSeriesLocalDataSource>(
-      () => TvSeriesLocalDataSourceImpl(databaseHelper: locator()));
+          () => TvSeriesLocalDataSourceImpl(databaseHelper: locator()));
 
-  //bloc
   locator.registerFactory(
-    () => SearchTvBloc(
-      locator(),
-    ),
+        () =>
+        SearchTvBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => PopularTvBloc(
-      locator(),
-    ),
+        () =>
+        PopularTvBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => TopRatedTvBloc(
-      locator(),
-    ),
+        () =>
+        TopRatedTvBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => DetailTvBloc(
-      locator(),
-    ),
+        () =>
+        DetailTvBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => RecommendationTvBloc(
-      locator(),
-    ),
+        () =>
+        RecommendationTvBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => WatchlistStatusTvBloc(
-      locator(),
-      locator(),
-      locator(),
-    ),
+        () =>
+        WatchlistStatusTvBloc(
+          locator(),
+          locator(),
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => SeasonTvBloc(
-      locator(),
-    ),
+        () =>
+        NowPlayingTvSeriesListBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => NowPlayingTvSeriesListBloc(
-      locator(),
-    ),
+        () =>
+        PopularTvSeriesListBloc(
+          locator(),
+        ),
   );
   locator.registerFactory(
-    () => PopularTvSeriesListBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTvSeriesListBloc(
-      locator(),
-    ),
+        () =>
+        TopRatedTvSeriesListBloc(
+          locator(),
+        ),
   );
 }

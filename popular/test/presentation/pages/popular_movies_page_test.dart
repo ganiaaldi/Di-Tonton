@@ -80,33 +80,4 @@ void main() {
 
     expect(movieCardFinder, findsOneWidget);
   });
-
-  testWidgets('onTap Movie card from popular movies page',
-      (WidgetTester tester) async {
-    when(() => mockPopularBloc.state).thenReturn(PopularHasData([testMovie]));
-
-    await tester.pumpWidget(BlocProvider<PopularBloc>.value(
-      value: mockPopularBloc,
-      child: MaterialApp(
-          home: PopularMoviesPage(),
-          onGenerateRoute: (RouteSettings settings) {
-            switch (settings.name) {
-              case MOVIE_DETAIL_ROUTE:
-                return MaterialPageRoute(
-                  builder: (_) => Container(),
-                  settings: settings,
-                );
-            }
-          }),
-    ));
-
-    final movieCardFinder = find.byKey(Key('movieCard'));
-
-    expect(movieCardFinder, findsOneWidget);
-
-    await tester.tap(movieCardFinder);
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.byKey(Key('movieCard')), findsNothing);
-  });
 }

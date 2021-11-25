@@ -15,7 +15,6 @@ class MovieCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
-        key: Key('movieCard'),
         onTap: () {
           Navigator.pushNamed(
             context,
@@ -36,24 +35,31 @@ class MovieCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      movie.title ?? '-',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: kHeading6,
-                    ),
-                    SizedBox(height: 6),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 6.0),
-                      child: Text(
-                        'Movie',
-                        style: TextStyle(
-                          color: Colors.black,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            movie.title ?? '-',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: kHeading6,
+                          ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.orange,
-                      ),
+                        SizedBox(height: 6),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Text(
+                            'Movies',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.brown.shade100,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 6),
                     Text(

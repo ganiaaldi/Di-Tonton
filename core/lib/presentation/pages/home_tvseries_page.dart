@@ -74,7 +74,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Ditonton'),
+        title: Text('Tv Series'),
         actions: [
           IconButton(
             onPressed: () {
@@ -90,29 +90,6 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6.0),
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 4.0, horizontal: 30.0),
-                      decoration: BoxDecoration(
-                        color: Colors.yellow[700],
-                      ),
-                      child: Text(
-                        'Tv Series',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 16),
               Text(
                 'Now Playing',

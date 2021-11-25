@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tvseries.dart';
 import 'package:core/domain/entities/tvseries_detail.dart';
-import 'package:core/presentation/widgets/season_card_list.dart';
 import 'package:detail/presentation/bloc/detail_tv_bloc.dart';
 import 'package:detail/presentation/bloc/recommendation/recommendation_tv_bloc.dart';
 import 'package:detail/presentation/bloc/watchlist_status/watchlist_status_tv_bloc.dart';
@@ -112,19 +111,6 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
                                       ),
                                       Text(
                                         tvSeries.overview,
-                                      ),
-                                      SizedBox(height: 16),
-                                      Text(
-                                        'Seasons',
-                                        style: kHeading6,
-                                      ),
-                                      Column(
-                                        children: <Widget>[
-                                          ...tvSeries.seasons.map((item) {
-                                            return SeasonCard(
-                                                item, tvSeries.id);
-                                          }).toList(),
-                                        ],
                                       ),
                                       SizedBox(height: 16),
                                       Text(

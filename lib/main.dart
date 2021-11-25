@@ -13,7 +13,6 @@ import 'package:detail/presentation/bloc/detail_bloc.dart';
 import 'package:detail/presentation/bloc/detail_tv_bloc.dart';
 import 'package:detail/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:detail/presentation/bloc/recommendation/recommendation_tv_bloc.dart';
-import 'package:detail/presentation/bloc/season_tvseries/season_tv_bloc.dart';
 import 'package:detail/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:detail/presentation/bloc/watchlist_status/watchlist_status_tv_bloc.dart';
 import 'package:popular/presentation/bloc/popular_bloc.dart';
@@ -28,7 +27,6 @@ import 'package:popular/presentation/pages/popular_tvseries_page.dart';
 import 'package:search/presentation/bloc/search_tv_bloc.dart';
 import 'package:search/presentation/pages/search_page.dart';
 import 'package:search/presentation/pages/search_tvseries_page.dart';
-import 'package:detail/presentation/pages/season_detail_page.dart';
 import 'package:toprated/presentation/bloc/top_rated_bloc.dart';
 import 'package:toprated/presentation/bloc/top_rated_tv_bloc.dart';
 import 'package:toprated/presentation/pages/top_rated_movies_page.dart';
@@ -89,9 +87,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistStatusTvBloc>(),
-        ),
-        BlocProvider(
-          create: (_) => di.locator<SeasonTvBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistBloc>(),
@@ -160,13 +155,6 @@ class MyApp extends StatelessWidget {
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TvSeriesDetailPage(id: id),
-                settings: settings,
-              );
-            case SEASON_DETAIL_ROUTE:
-              List<dynamic> arg = settings.arguments as List<dynamic>;
-              return CupertinoPageRoute(
-                builder: (_) =>
-                    SeasonDetailPage(tvId: arg[0], seasonNum: arg[1]),
                 settings: settings,
               );
             case SEARCH_ROUTE:

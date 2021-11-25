@@ -1,12 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import '../../../lib/presentation/bloc/search_bloc.dart';
 import 'package:core/utils/failure.dart';
 import 'package:core/domain/entities/movie.dart';
-import '../../../../search/lib/domain/usecases/search_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:search/domain/usecases/search_movies.dart';
+import 'package:search/presentation/bloc/search_bloc.dart';
 
 import 'search_bloc_test.mocks.dart';
 

@@ -1,11 +1,9 @@
 import 'package:core/data/models/movie_table.dart';
-import 'package:core/data/models/season_model.dart';
 import 'package:core/data/models/tvseries_detail_model.dart';
 import 'package:core/data/models/tvseries_table.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/movie.dart';
 import 'package:core/domain/entities/movie_detail.dart';
-import 'package:core/domain/entities/season_detail.dart';
 import 'package:core/domain/entities/tvseries.dart';
 import 'package:core/domain/entities/tvseries_detail.dart';
 
@@ -96,28 +94,6 @@ final testTvSeriesDetail = TvSeriesDetail(
   voteCount: 1,
 );
 
-final testSeasonDetail = SeasonDetail(
-  id: 'id',
-  airDate: 'airDate',
-  episodes: [
-    Episode(
-      airDate: "airDate",
-      episodeNumber: 1,
-      id: 1,
-      name: "name",
-      overview: "overview",
-      productionCode: "productionCode",
-      seasonNumber: 1,
-      stillPath: "stillPath",
-      voteAverage: 1.0,
-      voteCount: 1,
-    ),
-  ],
-  name: 'name',
-  overview: 'overview',
-  posterPath: 'posterPath',
-  seasonNumber: 1,
-);
 
 final testTvSeriesDetailWithSeason = TvSeriesDetail(
   backdropPath: 'backdropPath',

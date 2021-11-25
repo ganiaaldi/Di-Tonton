@@ -89,20 +89,4 @@ void main() {
 
     expect(movieCardFinder, findsOneWidget);
   });
-
-  testWidgets('onTap Movie card from popular movies page',
-      (WidgetTester tester) async {
-    when(() => mockTopRatedBloc.state).thenReturn(TopRatedHasData([testMovie]));
-
-    await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
-
-    final movieCardFinder = find.byKey(Key('movieCard'));
-
-    expect(movieCardFinder, findsOneWidget);
-
-    await tester.tap(movieCardFinder);
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.byKey(Key('movieCard')), findsNothing);
-  });
 }

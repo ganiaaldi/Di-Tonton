@@ -1,4 +1,4 @@
-# top_rated
+# toprated
 
 A new Flutter package project.
 

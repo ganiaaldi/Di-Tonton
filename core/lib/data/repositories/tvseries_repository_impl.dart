@@ -6,7 +6,6 @@ import 'package:core/data/datasources/tvseries_local_data_source.dart';
 import 'package:core/data/datasources/tvseries_remote_data_source.dart';
 import 'package:core/utils/failure.dart';
 import 'package:core/data/models/tvseries_table.dart';
-import 'package:core/domain/entities/season_detail.dart';
 import 'package:core/domain/entities/tvseries_detail.dart';
 import 'package:core/domain/entities/tvseries.dart';
 import 'package:core/domain/repositories/tvseries_repository.dart';
@@ -60,19 +59,6 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   Future<Either<Failure, TvSeriesDetail>> getTvSeriesDetail(int id) async {
     try {
       final result = await remoteDataSource.getTvSeriesDetail(id);
-      return Right(result.toEntity());
-    } on ServerException {
-      return Left(ServerFailure(''));
-    } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
-    }
-  }
-
-  @override
-  Future<Either<Failure, SeasonDetail>> getSeasonDetail(
-      int id, int season) async {
-    try {
-      final result = await remoteDataSource.getSeasonDetail(id, season);
       return Right(result.toEntity());
     } on ServerException {
       return Left(ServerFailure(''));

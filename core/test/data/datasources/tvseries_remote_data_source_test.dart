@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:core/utils/exception.dart';
 import 'package:core/data/datasources/tvseries_remote_data_source.dart';
-import 'package:core/data/models/season_model.dart';
 import 'package:core/data/models/tvseries_detail_model.dart';
 import 'package:core/data/models/tvseries_response.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -137,38 +136,6 @@ void main() {
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getTvSeriesDetail(tId);
-      // assert
-      expect(() => call, throwsA(isA<ServerException>()));
-    });
-  });
-
-  group('get Tv series season detail', () {
-    final tTvId = 1;
-    final tSeasonNum = 1;
-    final tSeason = SeasonModel.fromJson(
-        json.decode(readJson('dummy_data/tvseries/season.json')));
-
-    test('should return tv series season detail when the response code is 200',
-        () async {
-      // arrange
-      when(mockIOClient.get(
-              Uri.parse('$BASE_URL/tv/$tTvId/season/$tSeasonNum?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/tvseries/season.json'), 200));
-      // act
-      final result = await dataSource.getSeasonDetail(tTvId, tSeasonNum);
-      // assert
-      expect(result, equals(tSeason));
-    });
-
-    test('should throw Server Exception when the response code is 404 or other',
-        () async {
-      // arrange
-      when(mockIOClient.get(
-              Uri.parse('$BASE_URL/tv/$tTvId/season/$tSeasonNum?$API_KEY')))
-          .thenAnswer((_) async => http.Response('Not Found', 404));
-      // act
-      final call = dataSource.getSeasonDetail(tTvId, tSeasonNum);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });

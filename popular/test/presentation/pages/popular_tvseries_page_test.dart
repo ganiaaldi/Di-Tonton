@@ -83,34 +83,4 @@ void main() {
 
     expect(tvSeriesCardFinder, findsOneWidget);
   });
-
-  testWidgets('onTap TvSeries card from popular tv series page',
-      (WidgetTester tester) async {
-    when(() => mockPopularTvBloc.state)
-        .thenReturn(PopularTvHasData([testTvSeries]));
-
-    await tester.pumpWidget(BlocProvider<PopularTvBloc>.value(
-      value: mockPopularTvBloc,
-      child: MaterialApp(
-          home: PopularTvSeriesPage(),
-          onGenerateRoute: (RouteSettings settings) {
-            switch (settings.name) {
-              case TVSERIES_DETAIL_ROUTE:
-                return MaterialPageRoute(
-                  builder: (_) => Container(),
-                  settings: settings,
-                );
-            }
-          }),
-    ));
-
-    final tvSeriesCardFinder = find.byKey(Key('tvSeriesCard'));
-
-    expect(tvSeriesCardFinder, findsOneWidget);
-
-    await tester.tap(tvSeriesCardFinder);
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.byKey(Key('tvSeriesCard')), findsNothing);
-  });
 }

@@ -68,15 +68,6 @@ void main() {
       voteAverage: 1.0,
       voteCount: 100);
 
-  final tTvSeriesSeasonResponse = Season(
-    airDate: "2019-01-11",
-    episodeCount: 8,
-    id: 107288,
-    name: "Season 1",
-    overview: "",
-    posterPath: "/u3eoZguH2tqLLKqRqWjvisF0d2U.jpg",
-    seasonNumber: 1,
-  );
 
   test('TvSeries Detail should be a subclass of Tv series Detail entity',
       () async {
@@ -126,41 +117,5 @@ void main() {
 
       expect(result, expectedJsonMap);
     });
-  });
-
-  group('Season fromJson', () {
-    test('should return a valid model from JSON', () async {
-      // arrange
-      final Map<String, dynamic> jsonMap =
-          json.decode(readJson('dummy_data/tvseries/tvseries_season.json'));
-      // act
-      final result = Season.fromJson(jsonMap);
-      // assert
-      expect(result, tTvSeriesSeasonResponse);
-    });
-  });
-
-  group('Season toJson', () {
-    test('should return a JSON map containing proper data', () async {
-      final result = tTvSeriesSeasonResponse.toJson();
-
-      final expectedJsonMap = {
-        "air_date": "2019-01-11",
-        "episode_count": 8,
-        "id": 107288,
-        "name": "Season 1",
-        "overview": "",
-        "poster_path": "/u3eoZguH2tqLLKqRqWjvisF0d2U.jpg",
-        "season_number": 1,
-      };
-
-      expect(result, expectedJsonMap);
-    });
-  });
-
-  test('TvSeries Season should be a subclass of Tv series Season entity',
-      () async {
-    final result = tTvSeriesSeasonResponse.toEntity();
-    expect(result, tTvSeriesSeasonResponse);
   });
 }
